@@ -34,8 +34,9 @@ export default function Home() {
         let w = document.getElementById(section)
         w.style.height = height + "px"
         w.style.width = width + "px"
+        totalWidth += width
       }
-      totalWidth += width
+
       var c = document.getElementById("content")
       c.style.width = totalWidth + "px"
     }
@@ -43,8 +44,8 @@ export default function Home() {
 
   useEffect(() => {
     var content = document.getElementById("content")
-    var translateX,
-      translateY = 0
+    var translateX = 0
+    var translateY = 0
 
     function handleScroll(event) {
       if (isMobile) {
