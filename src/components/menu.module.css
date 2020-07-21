@@ -1,0 +1,124 @@
+/* Every child that isn't the last one */
+.menu {
+    display: flex;
+    align-items: flex-end;
+    z-index: 100;
+}
+
+.hamburgerContainer {
+    display: none;
+}
+
+.aboutContainer {
+    width: 4.8rem;
+}
+
+.projectsContainer {
+    width: 8rem;
+}
+
+.contactContainer {
+    width: 7.7rem;
+}
+
+.aboutContainer,
+.projectsContainer,
+.contactContainer {
+    background-color: white;
+    height: fit-content;
+    position: relative;
+    margin-left: 30px;
+    font-size: 1.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+}
+
+.linkBg {
+    background-color: black;
+    transition: width 0.1s ease;
+    width: 0px;
+    /*animation: negativeFill 1s ease;
+  animation-play-state: paused;*/
+}
+
+.linkBg:hover {
+    width: 100%;
+}
+
+.aboutLink,
+.projectsLink,
+.contactsLink {
+    text-decoration: none;
+}
+
+.aboutLink:after {
+    display: block;
+    content: "about";
+    color: white;
+    mix-blend-mode: difference;
+}
+
+.projectsLink:after {
+    display: block;
+    content: "projects";
+    color: white;
+    mix-blend-mode: difference;
+}
+
+.contactsLink:after {
+    display: block;
+    content: "contacts";
+    color: white;
+    mix-blend-mode: difference;
+}
+
+@keyframes negativeFill {
+    0% {
+        width: 0;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .menu {
+        flex-flow: column;
+        align-items: flex-end;
+        position: relative;
+        left: -20px;
+        height: 60px;
+        overflow: hidden;
+        transition: height 0.1s ease;
+    }
+
+    .menu:active {
+        height: 300px;
+    }
+
+    .hamburgerContainer {
+        display: block;
+    }
+
+    .hamburgerContainer:active .aboutContainer,
+    .projectsContainer,
+    .contactContainer {
+        display: block;
+    }
+
+    .aboutContainer,
+    .projectsContainer,
+    .contactContainer {
+        width: unset;
+        margin-left: unset;
+    }
+
+    .linkBg {
+        width: unset;
+        background-color: unset;
+    }
+
+
+
+}

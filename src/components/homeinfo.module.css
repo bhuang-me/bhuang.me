@@ -1,0 +1,165 @@
+.container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column;
+  position: relative;
+}
+
+.homeMainContainer {
+  width: 100%;
+  z-index: 100;
+}
+
+.homeMainAnim {
+  width: 20%;
+}
+
+.scrollPointer {
+  position: relative;
+  top: 5rem;
+  font-size: 2rem;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+@keyframes slideRight {
+  0% {
+    transform: translate(0%, 0px);
+  }
+
+  100% {
+    transform: translate(-100%, 0px);
+  }
+}
+
+@-webkit-keyframes slideRight {
+  0% {
+    transform: translate(0%, 0px);
+  }
+
+  100% {
+    transform: translate(-100%, 0px);
+  }
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translate(-100%, 0px);
+  }
+
+  100% {
+    transform: translate(0%, 0px);
+  }
+}
+
+@-webkit-keyframes slideLeft {
+  0% {
+    transform: translate(0%, 0px);
+  }
+
+  100% {
+    transform: translate(100%, 0px);
+  }
+}
+
+.backgroundVisual {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.topScrollingText {
+  position: absolute;
+  top: 25%;
+  height: 15%;
+  width: 100%;
+}
+
+.topScrollingText>.scrollingText {
+  background-image: url(./images/BRANDON_HUANG.svg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  position: absolute;
+  height: 100%;
+  left: 0px;
+
+  -moz-animation: slideRight 30s linear infinite;
+  -webkit-animation: slideRight 30s linear infinite;
+  animation: slideRight 30s linear infinite;
+}
+
+.midScrollingText {
+  position: absolute;
+  top: 40%;
+  height: 20%;
+  width: 100%;
+  display: none;
+}
+
+.midScrollingText>.scrollingText {
+  background-image: url(./images/BRANDON_HUANG2.svg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  position: absolute;
+  height: 100%;
+  left: 0px;
+  -moz-animation: slideLeft 20s linear infinite;
+  -webkit-animation: slideLeft 20s linear infinite;
+  animation: slideLeft 20s linear infinite;
+}
+
+.botScrollingText {
+  position: absolute;
+  top: 56%;
+  height: 17%;
+  width: 100%;
+}
+
+.botScrollingText>.scrollingText {
+  background-image: url(./images/MONTREAL.svg);
+  background-size: auto 100%;
+  background-repeat: no-repeat;
+  background-position: top left;
+  position: absolute;
+  height: 100%;
+  left: 0px;
+  -moz-animation: slideLeft 17s linear infinite;
+  -webkit-animation: slideLeft 17s linear infinite;
+  animation: slideLeft 17s linear infinite;
+}
+
+@keyframes arrowBounce {
+  0% {
+    left: 20px;
+  }
+
+  100% {
+    left: 0px
+  }
+}
+
+.arrowAnim {
+  margin-left: 0.5rem;
+  position: relative;
+  animation: arrowBounce 0.5s ease-in infinite;
+  animation-direction: alternate;
+}
+
+@media only screen and (max-width: 800px) {
+  .homeMainAnim {
+    width: 70%;
+  }
+
+  .topScrollingText {
+    height: 10%;
+  }
+
+  .botScrollingText {
+    height: 10%;
+  }
+}

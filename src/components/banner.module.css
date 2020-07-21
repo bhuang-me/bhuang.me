@@ -1,0 +1,22 @@
+.banner {
+    display: flex;
+}
+
+.container {
+    display: flex;
+    position: relative;
+    top: 30px;
+    left: 30px;
+    z-index: 100;
+    height: 68px;
+}
+
+
+@media only screen and (max-width: 600px) {
+    .container {
+        top: 10px;
+        left: 10px;
+        justify-content: space-between;
+    }
+
+}
