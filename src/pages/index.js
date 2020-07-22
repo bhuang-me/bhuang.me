@@ -11,6 +11,10 @@ export default function Home() {
   let totalSections = ["main", "about", "projects"]
   var aboutXBreakpoint = window.innerWidth * 0.7
   var projectXBreakpoint = aboutXBreakpoint * 2
+
+  var aboutYBreakpoint = window.innerHeight * 0.7
+  var projectYBreakpoint = aboutYBreakpoint * 2
+
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
 
   function sleep(ms) {
@@ -45,29 +49,16 @@ export default function Home() {
   useEffect(() => {
     var content = document.getElementById("content")
     var translateX = 0
-    var translateY = 0
 
     function handleScroll(event) {
-      if (isMobile) {
-        /*translateY -= (event.deltaY * 4) / 3
-        // clamp to prevent overscroll
-        translateY = Math.min(0, translateY)
-        translateY = Math.max(
-          translateY,
-          -(window.innerHeight * (totalSections.length - 1))
-        )
-        content.style.transform = "translate(0, " + translateY + "px)"*/
-      } else {
-        console.log("desktop")
-        translateX -= (event.deltaY * 4) / 3
-        // clamp to prevent overscroll
-        translateX = Math.min(0, translateX)
-        translateX = Math.max(
-          translateX,
-          -(window.innerWidth * (totalSections.length - 1))
-        )
-        content.style.transform = "translate(" + translateX + "px)"
-      }
+      translateX -= (event.deltaY * 4) / 3
+      // clamp to prevent overscroll
+      translateX = Math.min(0, translateX)
+      translateX = Math.max(
+        translateX,
+        -(window.innerWidth * (totalSections.length - 1))
+      )
+      content.style.transform = "translate(" + translateX + "px)"
     }
 
     async function anim() {
@@ -88,8 +79,31 @@ export default function Home() {
       }
     }
 
+    async function animMobile() {
+      if (window.scrollY >= aboutYBreakpoint) {
+        let items = document.getElementsByClassName("beforeAnimate_about")
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add("animate")
+          await sleep(200)
+        }
+      }
+
+      if (window.scrollY >= projectYBreakpoint) {
+        let items = document.getElementsByClassName("beforeAnimate_projects")
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add("animate")
+          await sleep(200)
+        }
+      }
+    }
+
     window.addEventListener("wheel", handleScroll)
-    window.addEventListener("wheel", anim)
+    if (isMobile) {
+      window.addEventListener("scroll", animMobile)
+    } else {
+      window.addEventListener("wheel", anim)
+    }
+
     window.addEventListener("resize", resizeMainHeightAndWidth)
     resizeMainHeightAndWidth()
     return () => window.removeEventListener("resize", resizeMainHeightAndWidth)
