@@ -16,11 +16,6 @@ export default function Home() {
     window.innerWidth * totalSections.length
   )
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
-
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
-
   useEffect(() => {
     function resizeMainHeightAndWidth() {
       const height = window.screen.height
@@ -69,23 +64,24 @@ export default function Home() {
     }
   })
 
-  var aboutXBreakpoint = window.innerWidth * 0.7
-  var projectXBreakpoint = aboutXBreakpoint * 2
+  function moveTo(section) {
+    setTranslateX(-totalSections.indexOf(section) * window.innerWidth)
+    console.log(translateX)
+    anim()
+  }
 
-  var aboutYBreakpoint = window.innerHeight * 0.7
-  var projectYBreakpoint = aboutYBreakpoint * 2
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
 
   async function anim() {
-    if (translateX <= -aboutXBreakpoint) {
-      let items = document.getElementsByClassName("beforeAnimate_about")
-      for (let i = 0; i < items.length; i++) {
-        items[i].classList.add("animate")
-        await sleep(200)
-      }
-    }
-
-    if (translateX <= -projectXBreakpoint) {
-      let items = document.getElementsByClassName("beforeAnimate_projects")
+    // translateX is negative
+    var nextSectionIndex = Math.floor(-translateX / (window.innerWidth * 0.7))
+    var nextBreakpoint = nextSectionIndex * window.innerWidth
+    if (translateX <= nextBreakpoint) {
+      let items = document.getElementsByClassName(
+        `beforeAnimate_${totalSections[nextSectionIndex]}`
+      )
       for (let i = 0; i < items.length; i++) {
         items[i].classList.add("animate")
         await sleep(200)
@@ -94,17 +90,14 @@ export default function Home() {
   }
 
   async function animMobile() {
-    console.log(window.scrollY)
-    if (window.scrollY >= aboutYBreakpoint) {
-      let items = document.getElementsByClassName("beforeAnimate_about")
-      for (let i = 0; i < items.length; i++) {
-        items[i].classList.add("animate")
-        await sleep(200)
-      }
-    }
-
-    if (window.scrollY >= projectYBreakpoint) {
-      let items = document.getElementsByClassName("beforeAnimate_projects")
+    var nextSectionIndex = Math.floor(
+      window.scrollY / (window.innerHeight * 0.7)
+    )
+    var nextBreakpoint = nextSectionIndex * window.innerHeight * 0.7
+    if (window.scrollY >= nextBreakpoint) {
+      let items = document.getElementsByClassName(
+        `beforeAnimate_${totalSections[nextSectionIndex]}`
+      )
       for (let i = 0; i < items.length; i++) {
         items[i].classList.add("animate")
         await sleep(200)
@@ -126,7 +119,7 @@ export default function Home() {
           id="main"
           className={"section"}
         >
-          <Banner />
+          <Banner moveTo={moveTo} />
           <HomeInfo />
         </div>
         <div
