@@ -11,12 +11,12 @@ export default function Menu() {
       </div>
       <div className={menuStyles.aboutContainer}>
         <div className={menuStyles.linkBg}>
-          <Link to="/about" className={menuStyles.aboutLink}></Link>
+          <Link to="#about" className={menuStyles.aboutLink}></Link>
         </div>
       </div>
       <div className={menuStyles.projectsContainer}>
         <div className={menuStyles.linkBg}>
-          <Link to="/projects" className={menuStyles.projectsLink}></Link>
+          <Link to="#projects" className={menuStyles.projectsLink}></Link>
         </div>
       </div>
       <div className={menuStyles.contactContainer}>

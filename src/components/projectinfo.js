@@ -9,8 +9,7 @@ export default function ProjectInfo() {
       <div className={projectInfoStyles.projectInfoContainer}>
         <div className={projectInfoStyles.projectInfo}>
           <div style={{ clear: "both" }}>
-            <div className={projectInfoStyles.subHeader}>WHAT I'VE&nbsp;</div>
-            <div className={projectInfoStyles.header}>DONE.</div>
+            <div className={projectInfoStyles.subHeader}>WHAT I'VE DONE</div>
           </div>
           <Wrapper>
             <div className={projectInfoStyles.projectSubcat}>

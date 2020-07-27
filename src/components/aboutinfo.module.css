@@ -102,6 +102,7 @@
   }
 
   .aboutSubcat {
+    display: flex;
     flex-flow: column;
     font-size: 1rem;
   }

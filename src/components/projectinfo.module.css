@@ -99,8 +99,9 @@
     }
 
     .subHeader {
-        font-size: 2rem;
+        font-size: 3rem;
         margin-bottom: 0px;
+        margin-top: 3rem;
         float: unset;
     }
 
@@ -113,16 +114,27 @@
 
     .projectSubcat {
         display: flex;
+        width: 100%;
         flex-flow: column;
-        font-size: 1rem;
+        font-size: 0.9rem;
         align-items: center;
+    }
+
+    .projectInfoContainer {
+        justify-content: flex-start;
+    }
+
+    .rtsImgContainer {
+        width: 100%;
+    }
+
+    .discord {
+        text-align: right;
     }
 
     .rts,
     .discord,
     .book {
         width: 80%;
-        animation-play-state: running;
     }
-
 }

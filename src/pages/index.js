@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Banner from "../components/banner"
 import HomeInfo from "../components/homeinfo"
 import AboutInfo from "../components/aboutinfo"
@@ -9,117 +9,132 @@ import WebFont from "webfontloader"
 
 export default function Home() {
   let totalSections = ["main", "about", "projects"]
-  var aboutXBreakpoint = window.innerWidth * 0.7
-  var projectXBreakpoint = aboutXBreakpoint * 2
-
-  var aboutYBreakpoint = window.innerHeight * 0.7
-  var projectYBreakpoint = aboutYBreakpoint * 2
-
+  const [translateX, setTranslateX] = useState(0)
+  const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
+  const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
+  const [totalWidth, setTotalWidth] = useState(
+    window.innerWidth * totalSections.length
+  )
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
-  function resizeMainHeightAndWidth() {
-    const height = window.innerHeight
-    const width = window.innerWidth
-    let totalWidth = 0
+  useEffect(() => {
+    function resizeMainHeightAndWidth() {
+      const height = window.innerHeight
+      const width = window.innerWidth
+      let newTotalWidth = 0
 
-    // detect if mobile or desktop
-
-    if (isMobile) {
-      for (let section of totalSections) {
-        let w = document.getElementById(section)
-        totalWidth = width
+      // detect if mobile or desktop
+      if (isMobile) {
+        setTotalWidth(width)
+      } else {
+        setSectionWidth(width)
+        setSectionHeight(height)
+        for (let i = 0; i < totalSections.length; i++) {
+          newTotalWidth += width
+        }
+        setTotalWidth(newTotalWidth)
       }
-    } else {
-      for (let section of totalSections) {
-        let w = document.getElementById(section)
-        w.style.height = height + "px"
-        w.style.width = width + "px"
-        totalWidth += width
-      }
+    }
+    resizeMainHeightAndWidth()
 
-      var c = document.getElementById("content")
-      c.style.width = totalWidth + "px"
+    function handleWheel(event) {
+      let newTranslateX = translateX - (event.deltaY * 4) / 3
+      newTranslateX = Math.min(0, newTranslateX)
+      newTranslateX = Math.max(
+        newTranslateX,
+        -(window.innerWidth * (totalSections.length - 1))
+      )
+      setTranslateX(newTranslateX)
+    }
+
+    window.addEventListener("wheel", handleWheel)
+    window.addEventListener("resize", resizeMainHeightAndWidth)
+    return () => {
+      window.removeEventListener("wheel", handleWheel)
+    }
+  })
+
+  var aboutXBreakpoint = window.innerWidth * 0.7
+  var projectXBreakpoint = aboutXBreakpoint * 2
+
+  var aboutYBreakpoint = window.innerHeight * 0.7
+  var projectYBreakpoint = aboutYBreakpoint * 2
+
+  async function anim() {
+    if (translateX <= -aboutXBreakpoint) {
+      let items = document.getElementsByClassName("beforeAnimate_about")
+      for (let i = 0; i < items.length; i++) {
+        items[i].classList.add("animate")
+        await sleep(200)
+      }
+    }
+
+    if (translateX <= -projectXBreakpoint) {
+      let items = document.getElementsByClassName("beforeAnimate_projects")
+      for (let i = 0; i < items.length; i++) {
+        items[i].classList.add("animate")
+        await sleep(200)
+      }
     }
   }
 
-  useEffect(() => {
-    var content = document.getElementById("content")
-    var translateX = 0
-
-    function handleScroll(event) {
-      translateX -= (event.deltaY * 4) / 3
-      // clamp to prevent overscroll
-      translateX = Math.min(0, translateX)
-      translateX = Math.max(
-        translateX,
-        -(window.innerWidth * (totalSections.length - 1))
-      )
-      content.style.transform = "translate(" + translateX + "px)"
-    }
-
-    async function anim() {
-      if (translateX <= -aboutXBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_about")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-
-      if (translateX <= -projectXBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_projects")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
+  async function animMobile() {
+    if (window.scrollY >= aboutYBreakpoint) {
+      let items = document.getElementsByClassName("beforeAnimate_about")
+      for (let i = 0; i < items.length; i++) {
+        items[i].classList.add("animate")
+        await sleep(200)
       }
     }
 
-    async function animMobile() {
-      if (window.scrollY >= aboutYBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_about")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-
-      if (window.scrollY >= projectYBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_projects")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
+    if (window.scrollY >= projectYBreakpoint) {
+      let items = document.getElementsByClassName("beforeAnimate_projects")
+      for (let i = 0; i < items.length; i++) {
+        items[i].classList.add("animate")
+        await sleep(200)
       }
     }
+  }
 
-    window.addEventListener("wheel", handleScroll)
-    if (isMobile) {
-      window.addEventListener("scroll", animMobile)
-    } else {
-      window.addEventListener("wheel", anim)
-    }
-
-    window.addEventListener("resize", resizeMainHeightAndWidth)
-    resizeMainHeightAndWidth()
-    return () => window.removeEventListener("resize", resizeMainHeightAndWidth)
-  })
+  if (isMobile) {
+    window.addEventListener("wheel", animMobile)
+  } else {
+    window.addEventListener("wheel", anim)
+  }
 
   return (
     <div>
-      <div id="content">
-        <div id="main" className={"section"}>
+      <div
+        style={{
+          transform: `translate(${translateX}px)`,
+          width: `${totalWidth}px`,
+        }}
+        id="content"
+      >
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          id="main"
+          className={"section"}
+        >
           <Banner />
           <HomeInfo />
         </div>
-        <div id="about" className={"section"}>
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          id="about"
+          className={"section"}
+        >
           <AboutInfo />
         </div>
-        <div id="projects" className={"section"}>
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          id="projects"
+          className={"section"}
+        >
           <ProjectInfo />
         </div>
       </div>

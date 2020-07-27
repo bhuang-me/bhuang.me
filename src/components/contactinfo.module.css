@@ -32,3 +32,36 @@
   font-size: 120%;
   margin-left: 1rem;
 }
+
+@media only screen and (max-width: 800px) {
+  .containerBlack {
+    bottom: -3.5rem;
+    left: 0px;
+    border-radius: 0px;
+    font-size: 0.75rem;
+    width: 100%;
+    flex-flow: column;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    transition: bottom 0.1s ease;
+  }
+
+  .containerBlack:hover {
+    width: 100%;
+  }
+
+  .containerBlack:active {
+    bottom: 0px;
+  }
+
+  .email,
+  .social {
+    margin-left: 0px;
+  }
+
+  .text {
+    margin-bottom: 1rem;
+  }
+
+}
