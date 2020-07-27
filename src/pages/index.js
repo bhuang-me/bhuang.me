@@ -23,9 +23,8 @@ export default function Home() {
 
   useEffect(() => {
     function resizeMainHeightAndWidth() {
-      const height = window.innerHeight
-      const width = window.innerWidth
-      let newTotalWidth = 0
+      const height = window.screen.height
+      const width = window.screen.width
 
       // detect if mobile or desktop
       if (isMobile) {
@@ -33,6 +32,7 @@ export default function Home() {
       } else {
         setSectionWidth(width)
         setSectionHeight(height)
+        let newTotalWidth = 0
         for (let i = 0; i < totalSections.length; i++) {
           newTotalWidth += width
         }
@@ -51,10 +51,21 @@ export default function Home() {
       setTranslateX(newTranslateX)
     }
 
+    if (isMobile) {
+      window.addEventListener("scroll", animMobile)
+    } else {
+      window.addEventListener("wheel", anim)
+    }
     window.addEventListener("wheel", handleWheel)
     window.addEventListener("resize", resizeMainHeightAndWidth)
     return () => {
+      if (isMobile) {
+        window.removeEventListener("scroll", animMobile)
+      } else {
+        window.removeEventListener("wheel", anim)
+      }
       window.removeEventListener("wheel", handleWheel)
+      window.removeEventListener("resize", resizeMainHeightAndWidth)
     }
   })
 
@@ -83,6 +94,7 @@ export default function Home() {
   }
 
   async function animMobile() {
+    console.log(window.scrollY)
     if (window.scrollY >= aboutYBreakpoint) {
       let items = document.getElementsByClassName("beforeAnimate_about")
       for (let i = 0; i < items.length; i++) {
@@ -98,12 +110,6 @@ export default function Home() {
         await sleep(200)
       }
     }
-  }
-
-  if (isMobile) {
-    window.addEventListener("wheel", animMobile)
-  } else {
-    window.addEventListener("wheel", anim)
   }
 
   return (
