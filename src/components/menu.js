@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "gatsby"
 import menuStyles from "./menu.module.css"
 import hamburger from "./images/hamburger_menu.svg"
 

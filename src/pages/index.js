@@ -9,28 +9,25 @@ import WebFont from "webfontloader"
 
 export default function Home() {
   let totalSections = ["main", "about", "projects"]
+  // translateX:
   const [translateX, setTranslateX] = useState(0)
   const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
   const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
   const [totalWidth, setTotalWidth] = useState(
     window.innerWidth * totalSections.length
   )
+  // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
   useEffect(() => {
     function resizeMainHeightAndWidth() {
-      const height = window.screen.height
-      const width = window.screen.width
-
-      // detect if mobile or desktop
       if (isMobile) {
-        setTotalWidth(width)
+        setTotalWidth(window.screen.width)
       } else {
+        const height = window.innerHeight
+        const width = window.innerWidth
         setSectionWidth(width)
-        setSectionHeight(height)
-        let newTotalWidth = 0
-        for (let i = 0; i < totalSections.length; i++) {
-          newTotalWidth += width
-        }
+        setSectionHeight(`${height}px`)
+        let newTotalWidth = width * totalSections.length
         setTotalWidth(newTotalWidth)
       }
     }
@@ -44,6 +41,38 @@ export default function Home() {
         -(window.innerWidth * (totalSections.length - 1))
       )
       setTranslateX(newTranslateX)
+    }
+
+    anim()
+    async function anim() {
+      // translateX is negative
+      var nextSectionIndex = Math.floor(-translateX / (window.innerWidth * 0.7))
+      var nextBreakpoint = nextSectionIndex * window.innerWidth
+      if (translateX <= nextBreakpoint) {
+        let items = document.getElementsByClassName(
+          `beforeAnimate_${totalSections[nextSectionIndex]}`
+        )
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add("animate")
+          await sleep(200)
+        }
+      }
+    }
+
+    async function animMobile() {
+      var nextSectionIndex = Math.floor(
+        window.scrollY / (window.innerHeight * 0.7)
+      )
+      var nextBreakpoint = nextSectionIndex * window.innerHeight * 0.7
+      if (window.scrollY >= nextBreakpoint) {
+        let items = document.getElementsByClassName(
+          `beforeAnimate_${totalSections[nextSectionIndex]}`
+        )
+        for (let i = 0; i < items.length; i++) {
+          items[i].classList.add("animate")
+          await sleep(200)
+        }
+      }
     }
 
     if (isMobile) {
@@ -65,44 +94,18 @@ export default function Home() {
   })
 
   function moveTo(section) {
-    setTranslateX(-totalSections.indexOf(section) * window.innerWidth)
-    console.log(translateX)
-    anim()
+    if (isMobile) {
+      //window.location.hash = `#${section}`
+      var sectElement = document.getElementById(section)
+      sectElement.scrollIntoView({ behavior: "smooth" })
+    } else {
+      let newTranslateX = -totalSections.indexOf(section) * window.innerWidth
+      setTranslateX(newTranslateX)
+    }
   }
 
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms))
-  }
-
-  async function anim() {
-    // translateX is negative
-    var nextSectionIndex = Math.floor(-translateX / (window.innerWidth * 0.7))
-    var nextBreakpoint = nextSectionIndex * window.innerWidth
-    if (translateX <= nextBreakpoint) {
-      let items = document.getElementsByClassName(
-        `beforeAnimate_${totalSections[nextSectionIndex]}`
-      )
-      for (let i = 0; i < items.length; i++) {
-        items[i].classList.add("animate")
-        await sleep(200)
-      }
-    }
-  }
-
-  async function animMobile() {
-    var nextSectionIndex = Math.floor(
-      window.scrollY / (window.innerHeight * 0.7)
-    )
-    var nextBreakpoint = nextSectionIndex * window.innerHeight * 0.7
-    if (window.scrollY >= nextBreakpoint) {
-      let items = document.getElementsByClassName(
-        `beforeAnimate_${totalSections[nextSectionIndex]}`
-      )
-      for (let i = 0; i < items.length; i++) {
-        items[i].classList.add("animate")
-        await sleep(200)
-      }
-    }
   }
 
   return (
@@ -115,7 +118,7 @@ export default function Home() {
         id="content"
       >
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
           id="main"
           className={"section"}
         >
@@ -123,14 +126,14 @@ export default function Home() {
           <HomeInfo />
         </div>
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
           id="about"
           className={"section"}
         >
           <AboutInfo />
         </div>
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
           id="projects"
           className={"section"}
         >
