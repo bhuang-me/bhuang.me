@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import Banner from "../components/banner"
 import HomeInfo from "../components/homeinfo"
 import AboutInfo from "../components/aboutinfo"
@@ -9,69 +9,49 @@ import WebFont from "webfontloader"
 
 export default function Home() {
   let totalSections = ["main", "about", "projects"]
-  var aboutXBreakpoint = window.innerWidth * 0.7
-  var projectXBreakpoint = aboutXBreakpoint * 2
-
-  var aboutYBreakpoint = window.innerHeight * 0.7
-  var projectYBreakpoint = aboutYBreakpoint * 2
-
+  // translateX:
+  const [translateX, setTranslateX] = useState(0)
+  const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
+  const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
+  const [totalWidth, setTotalWidth] = useState(
+    window.innerWidth * totalSections.length
+  )
+  // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
-
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
-
-  function resizeMainHeightAndWidth() {
-    const height = window.innerHeight
-    const width = window.innerWidth
-    let totalWidth = 0
-
-    // detect if mobile or desktop
-
-    if (isMobile) {
-      for (let section of totalSections) {
-        let w = document.getElementById(section)
-        totalWidth = width
-      }
-    } else {
-      for (let section of totalSections) {
-        let w = document.getElementById(section)
-        w.style.height = height + "px"
-        w.style.width = width + "px"
-        totalWidth += width
-      }
-
-      var c = document.getElementById("content")
-      c.style.width = totalWidth + "px"
-    }
-  }
-
   useEffect(() => {
-    var content = document.getElementById("content")
-    var translateX = 0
+    function resizeMainHeightAndWidth() {
+      if (isMobile) {
+        setTotalWidth(window.screen.width)
+      } else {
+        const height = window.innerHeight
+        const width = window.innerWidth
+        setSectionWidth(width)
+        setSectionHeight(`${height}px`)
+        let newTotalWidth = width * totalSections.length
+        setTotalWidth(newTotalWidth)
+      }
+    }
+    resizeMainHeightAndWidth()
 
-    function handleScroll(event) {
-      translateX -= (event.deltaY * 4) / 3
-      // clamp to prevent overscroll
-      translateX = Math.min(0, translateX)
-      translateX = Math.max(
-        translateX,
+    function handleWheel(event) {
+      let newTranslateX = translateX - (event.deltaY * 4) / 3
+      newTranslateX = Math.min(0, newTranslateX)
+      newTranslateX = Math.max(
+        newTranslateX,
         -(window.innerWidth * (totalSections.length - 1))
       )
-      content.style.transform = "translate(" + translateX + "px)"
+      setTranslateX(newTranslateX)
     }
 
+    anim()
     async function anim() {
-      if (translateX <= -aboutXBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_about")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-
-      if (translateX <= -projectXBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_projects")
+      // translateX is negative
+      var nextSectionIndex = Math.floor(-translateX / (window.innerWidth * 0.7))
+      var nextBreakpoint = nextSectionIndex * window.innerWidth
+      if (translateX <= nextBreakpoint) {
+        let items = document.getElementsByClassName(
+          `beforeAnimate_${totalSections[nextSectionIndex]}`
+        )
         for (let i = 0; i < items.length; i++) {
           items[i].classList.add("animate")
           await sleep(200)
@@ -80,16 +60,14 @@ export default function Home() {
     }
 
     async function animMobile() {
-      if (window.scrollY >= aboutYBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_about")
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-
-      if (window.scrollY >= projectYBreakpoint) {
-        let items = document.getElementsByClassName("beforeAnimate_projects")
+      var nextSectionIndex = Math.floor(
+        window.scrollY / (window.innerHeight * 0.7)
+      )
+      var nextBreakpoint = nextSectionIndex * window.innerHeight * 0.7
+      if (window.scrollY >= nextBreakpoint) {
+        let items = document.getElementsByClassName(
+          `beforeAnimate_${totalSections[nextSectionIndex]}`
+        )
         for (let i = 0; i < items.length; i++) {
           items[i].classList.add("animate")
           await sleep(200)
@@ -97,29 +75,68 @@ export default function Home() {
       }
     }
 
-    window.addEventListener("wheel", handleScroll)
     if (isMobile) {
       window.addEventListener("scroll", animMobile)
     } else {
       window.addEventListener("wheel", anim)
     }
-
+    window.addEventListener("wheel", handleWheel)
     window.addEventListener("resize", resizeMainHeightAndWidth)
-    resizeMainHeightAndWidth()
-    return () => window.removeEventListener("resize", resizeMainHeightAndWidth)
+    return () => {
+      if (isMobile) {
+        window.removeEventListener("scroll", animMobile)
+      } else {
+        window.removeEventListener("wheel", anim)
+      }
+      window.removeEventListener("wheel", handleWheel)
+      window.removeEventListener("resize", resizeMainHeightAndWidth)
+    }
   })
+
+  function moveTo(section) {
+    if (isMobile) {
+      //window.location.hash = `#${section}`
+      var sectElement = document.getElementById(section)
+      sectElement.scrollIntoView({ behavior: "smooth" })
+    } else {
+      let newTranslateX = -totalSections.indexOf(section) * window.innerWidth
+      setTranslateX(newTranslateX)
+    }
+  }
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms))
+  }
 
   return (
     <div>
-      <div id="content">
-        <div id="main" className={"section"}>
-          <Banner />
+      <div
+        style={{
+          transform: `translate(${translateX}px)`,
+          width: `${totalWidth}px`,
+        }}
+        id="content"
+      >
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          id="main"
+          className={"section"}
+        >
+          <Banner moveTo={moveTo} />
           <HomeInfo />
         </div>
-        <div id="about" className={"section"}>
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          id="about"
+          className={"section"}
+        >
           <AboutInfo />
         </div>
-        <div id="projects" className={"section"}>
+        <div
+          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          id="projects"
+          className={"section"}
+        >
           <ProjectInfo />
         </div>
       </div>

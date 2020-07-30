@@ -31,9 +31,9 @@ export default function AboutInfo() {
               </div>
               <div className={aboutInfoStyles.work + " beforeAnimate_about"}>
                 <div className={aboutInfoStyles.subcatHeader}>work</div>
-                <div>Software Intern @ Accedian</div>
-                <div>Marketing Intern @ Broadsign</div>
-                <div>IT Intern @ Michael Kors</div>
+                <div>Accedian Networks</div>
+                <div>Broadsign</div>
+                <div>Michael Kors</div>
               </div>
             </div>
           </Wrapper>

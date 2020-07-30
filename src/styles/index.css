@@ -79,4 +79,9 @@ img {
         display: flex;
         flex-flow: column;
     }
+
+    #projects {
+        height: calc(100vh + 150px);
+    }
+
 }

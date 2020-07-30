@@ -9,8 +9,7 @@ export default function ProjectInfo() {
       <div className={projectInfoStyles.projectInfoContainer}>
         <div className={projectInfoStyles.projectInfo}>
           <div style={{ clear: "both" }}>
-            <div className={projectInfoStyles.subHeader}>WHAT I'VE&nbsp;</div>
-            <div className={projectInfoStyles.header}>DONE.</div>
+            <div className={projectInfoStyles.subHeader}>WHAT I'VE DONE</div>
           </div>
           <Wrapper>
             <div className={projectInfoStyles.projectSubcat}>
@@ -27,9 +26,7 @@ export default function ProjectInfo() {
                 <div style={{ fontWeight: "bold" }}>
                   Team project for Advanced
                 </div>
-                <div style={{ fontWeight: "bold" }}>
-                  Game Development Winter 2020
-                </div>
+                <div style={{ fontWeight: "bold" }}>Game Development W2020</div>
                 <div>Unity Engine</div>
                 <div>Photon Unity Networking</div>
               </div>
@@ -38,14 +35,18 @@ export default function ProjectInfo() {
                   projectInfoStyles.discord + " beforeAnimate_projects"
                 }
               >
+                <div className={projectInfoStyles.discImgContainer}>
+                  <img
+                    src={require("./images/discord.jpg")}
+                    alt="Discord Logo"
+                  />
+                </div>
                 <div className={projectInfoStyles.subcatHeader}>
                   Discord Filter Bot
                 </div>
                 <div style={{ fontWeight: "bold" }}>
-                  Discord bot that filters
-                </div>
-                <div style={{ fontWeight: "bold" }}>
-                  messages based on database-stored words
+                  Discord bot that filters messages based on database-stored
+                  words
                 </div>
                 <div>NodeJS // MongoDB</div>
               </div>
@@ -57,12 +58,9 @@ export default function ProjectInfo() {
                   <div>Management Web App</div>
                 </div>
                 <div style={{ fontWeight: "bold" }}>
-                  Book management system with login
+                  Book management system with login implemented with OOP design
+                  patterns and CRUD operations
                 </div>
-                <div style={{ fontWeight: "bold" }}>
-                  implemented with OOP design patterns
-                </div>
-                <div style={{ fontWeight: "bold" }}>and CRUD operations</div>
                 <div>HTML // CSS // Java // MySQL</div>
               </div>
             </div>
