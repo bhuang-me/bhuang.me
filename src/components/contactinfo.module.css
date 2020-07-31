@@ -6,6 +6,8 @@
   left: 10px;
   border-radius: 10px;
   padding: 10px;
+  padding-bottom: 12px;
+  line-height: 1.5rem;
   background-color: black;
   color: white;
   white-space: nowrap;
@@ -14,21 +16,65 @@
   z-index: 1000;
   width: 7.2rem;
   overflow: hidden;
-  transition: width 0.1s;
+  transition: width 0.2s;
 }
 
 .containerBlack:hover {
-  width: 30rem;
+  width: 23rem;
 }
 
 
 .text {
   overflow: none;
   font-size: 150%;
+  line-height: 1.4rem;
 }
 
 .email,
 .social {
   font-size: 120%;
   margin-left: 1rem;
+  display: flex;
+  align-items: center;
+  line-height: 1rem;
+}
+
+.social {
+  margin-right: 0.5rem;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 800px) {
+  .containerBlack {
+    bottom: -3.5rem;
+    left: 0px;
+    border-radius: 0px;
+    font-size: 0.75rem;
+    width: 100%;
+    flex-flow: column;
+    align-items: center;
+    padding-left: 0px;
+    padding-right: 0px;
+    transition: bottom 0.1s ease;
+  }
+
+  .containerBlack:hover {
+    width: 100%;
+  }
+
+  .containerBlack:active {
+    bottom: 0px;
+  }
+
+  .email,
+  .social {
+    margin-left: 0px;
+  }
+
+  .text {
+    margin-bottom: 1rem;
+  }
+
 }

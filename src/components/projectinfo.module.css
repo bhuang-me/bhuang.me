@@ -1,14 +1,12 @@
 .container {
     height: 100%;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
     position: relative;
+    padding-bottom: 100px;
 }
 
 .projectInfoContainer {
+    position: relative;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -43,11 +41,11 @@
 .projectSubcat {
     margin-top: 2rem;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 50% 50%;
+    grid-template-columns: 33% 34% 33%;
+    column-gap: 2rem;
     width: 100%;
     justify-content: space-around;
-    font-size: 1.4rem;
+    font-size: 1.2vw;
     font-family: "Roboto Mono", "sans-serif";
 }
 
@@ -73,8 +71,6 @@
     text-align: left;
     grid-column-start: 1;
     grid-column-end: 2;
-    grid-row-start: 1;
-    grid-row-end: 3;
 }
 
 .rtsImgContainer {
@@ -83,12 +79,18 @@
 
 .discord {
     text-align: left;
-    flex: 0 1 33.33%;
+    grid-column-start: 2;
+    grid-column-end: 3;
+}
+
+.discImgContainer {
+    width: 80%;
 }
 
 .book {
     text-align: left;
-    flex: 0 1 33.33%;
+    grid-column-start: 3;
+    grid-column-end: 4;
 }
 
 @media only screen and (max-width: 800px) {
@@ -99,30 +101,47 @@
     }
 
     .subHeader {
-        font-size: 2rem;
+        font-size: 3rem;
         margin-bottom: 0px;
+        margin-top: 3rem;
         float: unset;
     }
 
     .projectHeader {
-        transform: rotate(-90deg);
-        left: -52%;
+        transform: rotate(90deg);
+        left: -80%;
         top: 38%;
         font-size: 9rem;
     }
 
     .projectSubcat {
         display: flex;
+        width: 100%;
         flex-flow: column;
-        font-size: 1rem;
+        font-size: 0.9rem;
         align-items: center;
+    }
+
+    .projectInfoContainer {
+        justify-content: flex-start;
+    }
+
+    .rtsImgContainer,
+    .discImgContainer {
+        width: 100%;
+    }
+
+    .discImgContainer {
+        margin-top: 3rem;
+    }
+
+    .discord {
+        text-align: right;
     }
 
     .rts,
     .discord,
     .book {
         width: 80%;
-        animation-play-state: running;
     }
-
 }

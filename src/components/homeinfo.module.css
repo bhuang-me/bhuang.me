@@ -133,7 +133,7 @@
   animation: slideLeft 17s linear infinite;
 }
 
-@keyframes arrowBounce {
+@keyframes arrowBounceLeft {
   0% {
     left: 20px;
   }
@@ -143,10 +143,20 @@
   }
 }
 
+@keyframes arrowBounceDown {
+  0% {
+    top: 20px;
+  }
+
+  100% {
+    top: 0px
+  }
+}
+
 .arrowAnim {
   margin-left: 0.5rem;
   position: relative;
-  animation: arrowBounce 0.5s ease-in infinite;
+  animation: arrowBounceLeft 0.5s ease-in infinite;
   animation-direction: alternate;
 }
 
@@ -161,5 +171,17 @@
 
   .botScrollingText {
     height: 10%;
+  }
+
+  .scrollPointer {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .scrollPointer img {
+    transform: rotate(90deg);
+    animation: arrowBounceDown 0.5s ease-in infinite;
+    animation-direction: alternate;
   }
 }
