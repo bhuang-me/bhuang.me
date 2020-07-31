@@ -5,17 +5,15 @@ import AboutInfo from "../components/aboutinfo"
 import ProjectInfo from "../components/projectinfo"
 import ContactInfo from "../components/contactinfo"
 import "../styles/index.css"
-import WebFont from "webfontloader"
+import { window, document } from "browser-monads"
 
 export default function Home() {
   let totalSections = ["main", "about", "projects"]
-  // translateX:
+  // translateX: the translate value in the X axis of the #content element
   const [translateX, setTranslateX] = useState(0)
-  const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
-  const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
-  const [totalWidth, setTotalWidth] = useState(
-    window.innerWidth * totalSections.length
-  )
+  const [sectionWidth, setSectionWidth] = useState(0) //window.innerWidth
+  const [sectionHeight, setSectionHeight] = useState(0) //window.innerHeight
+  const [totalWidth, setTotalWidth] = useState(0) //window.innerWidth * totalSections.length
   // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
   useEffect(() => {
@@ -95,7 +93,6 @@ export default function Home() {
 
   function moveTo(section) {
     if (isMobile) {
-      //window.location.hash = `#${section}`
       var sectElement = document.getElementById(section)
       sectElement.scrollIntoView({ behavior: "smooth" })
     } else {
@@ -144,14 +141,3 @@ export default function Home() {
     </div>
   )
 }
-
-WebFont.load({
-  google: {
-    families: [
-      "Fredoka One: 400",
-      "Roboto Mono: 400, 700",
-      "Oswald: 200, 500, 700",
-      "sans-serif",
-    ],
-  },
-})

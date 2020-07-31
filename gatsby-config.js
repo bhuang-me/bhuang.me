@@ -9,5 +9,19 @@ module.exports = {
   siteMetadata: {
     title: "Brandon Huang",
   },
-  plugins: [],
+  plugins: [
+    {
+      resolve: "gatsby-plugin-web-font-loader",
+      options: {
+        google: {
+          families: [
+            "Fredoka One: 400",
+            "Roboto Mono: 400, 700",
+            "Oswald: 200, 500, 700",
+            "sans-serif",
+          ],
+        },
+      },
+    },
+  ],
 }

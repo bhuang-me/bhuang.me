@@ -15,7 +15,9 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "browser-monads": "^1.0.0",
     "gatsby": "^2.23.12",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "webfontloader": "^1.6.28"
