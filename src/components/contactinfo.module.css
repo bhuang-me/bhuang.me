@@ -55,17 +55,12 @@
     width: 100%;
     flex-flow: column;
     align-items: center;
-    padding-left: 0px;
-    padding-right: 0px;
     transition: bottom 0.1s ease;
-  }
-
-  .containerBlack:hover {
-    width: 100%;
   }
 
   .containerBlack:active {
     bottom: 0px;
+    width: 100%;
   }
 
   .email,

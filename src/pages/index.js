@@ -11,9 +11,11 @@ export default function Home() {
   let totalSections = ["main", "about", "projects"]
   // translateX: the translate value in the X axis of the #content element
   const [translateX, setTranslateX] = useState(0)
-  const [sectionWidth, setSectionWidth] = useState(0) //window.innerWidth
-  const [sectionHeight, setSectionHeight] = useState(0) //window.innerHeight
-  const [totalWidth, setTotalWidth] = useState(0) //window.innerWidth * totalSections.length
+  const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
+  const [sectionHeight, setSectionHeight] = useState(window.innerHeight) //window.innerHeight
+  const [totalWidth, setTotalWidth] = useState(
+    window.innerWidth * totalSections.length
+  ) //window.innerWidth * totalSections.length
   // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
   useEffect(() => {
