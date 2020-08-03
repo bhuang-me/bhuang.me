@@ -42,13 +42,15 @@ body {
 .beforeAnimate_about,
 .beforeAnimate_projects {
     position: relative;
-    animation-name: fadeInUp;
-    animation-duration: 0.6s;
-    animation-play-state: paused;
+    transition: bottom 0.5s, opacity 0.5s;
+    transition-timing-function: linear;
+    bottom: 20px;
+    opacity: 0;
 }
 
 .animate {
-    animation-play-state: running;
+    bottom: 0px;
+    opacity: 1;
 }
 
 img {

@@ -4,6 +4,8 @@ import HomeInfo from "../components/homeinfo"
 import AboutInfo from "../components/aboutinfo"
 import ProjectInfo from "../components/projectinfo"
 import ContactInfo from "../components/contactinfo"
+import favicon from "../components/images/favicon.ico"
+import { Helmet } from "react-helmet"
 import "../styles/index.css"
 import { window, document } from "browser-monads"
 
@@ -19,21 +21,21 @@ export default function Home() {
   // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
   useEffect(() => {
-    function resizeMainHeightAndWidth() {
+    const resizeMainHeightAndWidth = () => {
       if (isMobile) {
         setTotalWidth(window.screen.width)
       } else {
         const height = window.innerHeight
         const width = window.innerWidth
-        setSectionWidth(width)
+        setSectionWidth(`${width}px`)
         setSectionHeight(`${height}px`)
         let newTotalWidth = width * totalSections.length
-        setTotalWidth(newTotalWidth)
+        setTotalWidth(`${newTotalWidth}px`)
       }
     }
     resizeMainHeightAndWidth()
 
-    function handleWheel(event) {
+    const handleWheel = event => {
       let newTranslateX = translateX - (event.deltaY * 4) / 3
       newTranslateX = Math.min(0, newTranslateX)
       newTranslateX = Math.max(
@@ -93,7 +95,7 @@ export default function Home() {
     }
   })
 
-  function moveTo(section) {
+  const moveTo = section => {
     if (isMobile) {
       var sectElement = document.getElementById(section)
       sectElement.scrollIntoView({ behavior: "smooth" })
@@ -103,21 +105,26 @@ export default function Home() {
     }
   }
 
-  function sleep(ms) {
+  const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
   }
 
   return (
-    <div>
+    <>
+      <Helmet
+        meta={[{ charSet: "utf-8" }]}
+        title="Brandon Huang"
+        link={[{ rel: "icon", type: "image/x-icon", href: `${favicon}` }]}
+      />
       <div
         style={{
           transform: `translate(${translateX}px)`,
-          width: `${totalWidth}px`,
+          width: totalWidth,
         }}
         id="content"
       >
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          style={{ width: sectionWidth, height: sectionHeight }}
           id="main"
           className={"section"}
         >
@@ -125,14 +132,14 @@ export default function Home() {
           <HomeInfo />
         </div>
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          style={{ width: sectionWidth, height: sectionHeight }}
           id="about"
           className={"section"}
         >
           <AboutInfo />
         </div>
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}` }}
+          style={{ width: sectionWidth, height: sectionHeight }}
           id="projects"
           className={"section"}
         >
@@ -140,6 +147,6 @@ export default function Home() {
         </div>
       </div>
       <ContactInfo />
-    </div>
+    </>
   )
 }
