@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import Banner from "../components/banner"
 import HomeInfo from "../components/homeinfo"
 import AboutInfo from "../components/aboutinfo"
-import ProjectInfo from "../components/projectinfo"
+import TimelineInfo from "../components/timelineinfo"
 import ContactInfo from "../components/contactinfo"
 import favicon from "../components/images/favicon.ico"
 import { Helmet } from "react-helmet"
@@ -132,18 +132,11 @@ export default function Home() {
           <HomeInfo />
         </div>
         <div
-          style={{ width: sectionWidth, height: sectionHeight }}
-          id="about"
+          style={{ width: sectionWidth * 2, height: sectionHeight }}
+          id="timeline"
           className={"section"}
         >
-          <AboutInfo />
-        </div>
-        <div
-          style={{ width: sectionWidth, height: sectionHeight }}
-          id="projects"
-          className={"section"}
-        >
-          <ProjectInfo />
+          <TimelineInfo />
         </div>
       </div>
       <ContactInfo />

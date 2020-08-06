@@ -20,6 +20,12 @@ body {
     background-color: #252525;
 }
 
+#timeline {
+    width: 300vw;
+    height: 100vh;
+    background-color: #252525;
+}
+
 #projects {
     width: 100vw;
     height: 100vh;

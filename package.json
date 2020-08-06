@@ -15,6 +15,7 @@
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
+    "@material-ui/core": "^4.11.0",
     "browser-monads": "^1.0.0",
     "gatsby": "^2.23.12",
     "gatsby-plugin-react-helmet": "^3.3.10",
