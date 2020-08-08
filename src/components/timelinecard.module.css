@@ -1,11 +1,16 @@
+.cardContainer {
+    position: absolute;
+    width: 300px;
+}
+
 .cardDown {
-    max-width: 300px;
+    max-width: 100%;
     transform: translateX(-50%);
     margin-top: 5rem;
 }
 
 .cardUp {
-    max-width: 300px;
+    max-width: 100%;
     transform: translateX(-50%);
     margin-bottom: 5rem;
 }

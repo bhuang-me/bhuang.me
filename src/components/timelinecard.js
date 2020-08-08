@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import {
   Card,
   CardContent,
@@ -33,36 +33,39 @@ const triangleUp = {
 }
 
 export default function TimelineCard(props) {
-  var orientation
-  var cardOrientation
-  if (props.orientation == "up") {
-    orientation = triangleUp
-    cardOrientation = timelineCardStyles.cardUp
-  } else {
-    orientation = triangleDown
-    cardOrientation = timelineCardStyles.cardDown
-  }
-
+  var up = props.orientation == "up"
   return (
-    <ThemeProvider theme={theme}>
-      <div style={orientation}></div>
-      <Card className={cardOrientation}>
-        <CardContent>
-          <Typography variant="subtitle1">Date</Typography>
-          <Typography variant="h4">Title</Typography>
-        </CardContent>
-        <CardMedia
-          image={require("./images/discord.jpg")}
-          title="discord img"
-          className={timelineCardStyles.media}
-        />
-        <CardContent>
-          <Typography variant="h6" color="textSecondary">
-            personal project
-          </Typography>
-          <Typography variant="body1">Description</Typography>
-        </CardContent>
-      </Card>
-    </ThemeProvider>
+    <div
+      className={timelineCardStyles.cardContainer}
+      style={{
+        ...props.style,
+        ...(up ? { bottom: "0px" } : ""),
+      }}
+    >
+      <ThemeProvider theme={theme}>
+        <div style={up ? triangleUp : triangleDown}></div>
+        <Card
+          className={
+            up ? timelineCardStyles.cardUp : timelineCardStyles.cardDown
+          }
+        >
+          <CardContent>
+            <Typography variant="subtitle1">{props.date}</Typography>
+            <Typography variant="h4">{props.title}</Typography>
+          </CardContent>
+          <CardMedia
+            image={props.img}
+            title="discord img"
+            className={timelineCardStyles.media}
+          />
+          <CardContent>
+            <Typography variant="h6" color="textSecondary">
+              {props.projectType}
+            </Typography>
+            <Typography variant="body1">{props.desc}</Typography>
+          </CardContent>
+        </Card>
+      </ThemeProvider>
+    </div>
   )
 }

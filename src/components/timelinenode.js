@@ -1,21 +1,24 @@
 import React from "react"
 import nodeStyles from "./timelinenode.module.css"
-
-const circleStyles = {
-  borderRadius: "50%",
-  backgroundColor: "red",
-  width: "40px",
-  height: "40px",
-  position: "absolute",
-  top: "5px",
-  transform: "translate(-50%, -50%)",
-}
+import { Fade, Typography } from "@material-ui/core"
 
 export default function TimelineNode(props) {
+  const [checked, setChecked] = React.useState(false)
+
+  const handleChange = () => {
+    setChecked(prev => !prev)
+  }
+
   return (
     <div style={props.style} className={nodeStyles.nodeContainer}>
-      {props.children}
-      <div style={circleStyles}></div>
+      <Fade in={checked}>{props.children}</Fade>
+      <div
+        className={nodeStyles.node}
+        onMouseEnter={handleChange}
+        onMouseLeave={handleChange}
+      >
+        <span className={nodeStyles.nodeLabel}>{props.label}</span>
+      </div>
     </div>
   )
 }
