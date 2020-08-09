@@ -2,7 +2,7 @@ import { createMuiTheme } from "@material-ui/core/styles"
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Roboto Mono, Roboto",
+    fontFamily: "Oswald",
     h4: {
       fontSize: 20,
       fontWeight: "bold",
@@ -17,6 +17,14 @@ const theme = createMuiTheme({
     },
     body1: {
       fontSize: 12,
+    },
+  },
+  overrides: {
+    MuiCard: {
+      root: {
+        borderRadius: "10px",
+        boxShadow: "none",
+      },
     },
   },
 })

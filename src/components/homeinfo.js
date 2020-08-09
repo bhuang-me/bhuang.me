@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import homeStyles from "./homeinfo.module.css"
-import HomeMainAnim from "./images/home_main_anim.gif"
+import HomeMainAnim from "./images/home_main_anim_grad.gif"
 import arrow from "./images/home_arrow.svg"
 
 export default function HomeInfo() {

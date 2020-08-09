@@ -1,5 +1,6 @@
 .cardContainer {
     position: absolute;
+    text-align: center;
     width: 300px;
 }
 

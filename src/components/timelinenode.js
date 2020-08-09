@@ -11,14 +11,15 @@ export default function TimelineNode(props) {
 
   return (
     <div style={props.style} className={nodeStyles.nodeContainer}>
-      <Fade in={checked}>{props.children}</Fade>
-      <div
-        className={nodeStyles.node}
-        onMouseEnter={handleChange}
-        onMouseLeave={handleChange}
-      >
-        <span className={nodeStyles.nodeLabel}>{props.label}</span>
+      {props.children && <Fade in={checked}>{props.children}</Fade>}
+      <div className={nodeStyles.nodeOuter}>
+        <div
+          className={nodeStyles.nodeInner}
+          onMouseEnter={handleChange}
+          onMouseLeave={handleChange}
+        ></div>
       </div>
+      <span className={nodeStyles.nodeLabel}>{props.label}</span>
     </div>
   )
 }

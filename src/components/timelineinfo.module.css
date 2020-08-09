@@ -3,6 +3,14 @@
     width: 100%;
     position: relative;
     display: flex;
-    align-items: center;
     justify-content: center;
+}
+
+.intro {}
+
+.header {
+    font-size: 80px;
+    color: black;
+    text-shadow: 5px -2px white;
+    font-weight: bold;
 }
