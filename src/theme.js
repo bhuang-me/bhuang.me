@@ -2,21 +2,28 @@ import { createMuiTheme } from "@material-ui/core/styles"
 
 const theme = createMuiTheme({
   typography: {
-    fontFamily: "Oswald",
+    fontFamily: "Oswald, Roboto",
     h4: {
-      fontSize: 20,
+      fontSize: 24,
       fontWeight: "bold",
     },
     h5: {
       fontSize: 16,
     },
     h6: {
+      fontSize: 14,
+      fontWeight: "bold",
+      color: "rgba(0, 255, 201, 1)",
+    },
+    subtitle1: {
       fontSize: 16,
-      fontVariant: "small-caps",
+    },
+    subtitle2: {
+      fontSize: 16,
       fontWeight: "bold",
     },
     body1: {
-      fontSize: 12,
+      fontSize: 14,
     },
   },
   overrides: {

@@ -7,7 +7,6 @@ export default function Banner(props) {
   return (
     <div className={bannerStyles.container}>
       <Logo />
-      <Menu moveTo={props.moveTo} />
     </div>
   )
 }

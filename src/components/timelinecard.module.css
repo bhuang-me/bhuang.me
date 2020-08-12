@@ -17,6 +17,12 @@
 }
 
 .media {
-    height: 160px;
-    padding-top: "56.25%";
+    width: auto;
+    height: 120px;
+    max-height: 160px;
+}
+
+.tagContainer {
+    border-top: 2px solid lightgrey;
+    padding: 8px;
 }

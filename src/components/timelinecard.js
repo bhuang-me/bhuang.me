@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React from "react"
 import {
   Card,
   CardContent,
@@ -6,8 +6,18 @@ import {
   ThemeProvider,
   Typography,
 } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
 import timelineCardStyles from "./timelinecard.module.css"
 import theme from "../theme.js"
+import Tag from "../components/tag.js"
+
+const useStyles = makeStyles({
+  root: {
+    padding: "8px",
+    paddingBottom: "12px",
+    borderTop: "2px solid grey",
+  },
+})
 
 const triangleDown = {
   width: "0px",
@@ -33,7 +43,8 @@ const triangleUp = {
 }
 
 export default function TimelineCard(props) {
-  var up = props.orientation == "up"
+  const classes = useStyles()
+  var up = props.orientation === "up"
   return (
     <div
       className={timelineCardStyles.cardContainer}
@@ -50,19 +61,32 @@ export default function TimelineCard(props) {
           }
         >
           <CardContent>
-            <Typography variant="subtitle1">{props.date}</Typography>
-            <Typography variant="h4">{props.title}</Typography>
+            {props.title && <Typography variant="h4">{props.title}</Typography>}
+            {props.projectType && (
+              <Typography variant="subtitle2">{props.projectType}</Typography>
+            )}
           </CardContent>
-          <CardMedia
-            image={props.img}
-            title="discord img"
-            className={timelineCardStyles.media}
-          />
+          {props.img && (
+            <CardMedia
+              image={props.img}
+              title="discord img"
+              className={timelineCardStyles.media}
+            />
+          )}
+
           <CardContent>
-            <Typography variant="h6" color="textSecondary">
-              {props.projectType}
-            </Typography>
-            <Typography variant="body1">{props.desc}</Typography>
+            {props.desc && (
+              <>
+                <Typography variant="body1">{props.desc}</Typography>
+                <br />
+              </>
+            )}
+            {props.tags &&
+              props.tags.map((tag, key) => (
+                <Tag label={tag} key={key}>
+                  {tag}
+                </Tag>
+              ))}
           </CardContent>
         </Card>
       </ThemeProvider>

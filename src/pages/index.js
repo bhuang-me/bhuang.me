@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import Banner from "../components/banner"
 import HomeInfo from "../components/homeinfo"
-import AboutInfo from "../components/aboutinfo"
+//import AboutInfo from "../components/aboutinfo"
 import TimelineInfo from "../components/timelineinfo"
 import ContactInfo from "../components/contactinfo"
 import favicon from "../components/images/favicon.ico"
@@ -14,10 +14,8 @@ export default function Home() {
   // translateX: the translate value in the X axis of the #content element
   const [translateX, setTranslateX] = useState(0)
   const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
-  const [sectionHeight, setSectionHeight] = useState(window.innerHeight) //window.innerHeight
-  const [totalWidth, setTotalWidth] = useState(
-    window.innerWidth * totalSections.length
-  ) //window.innerWidth * totalSections.length
+  const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
+  const [totalWidth, setTotalWidth] = useState(`${window.innerWidth * 2.5}px`)
   // detect if mobile or desktop based on screen width
   let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
   useEffect(() => {
@@ -29,7 +27,7 @@ export default function Home() {
         const width = window.innerWidth
         setSectionWidth(`${width}px`)
         setSectionHeight(`${height}px`)
-        let newTotalWidth = width * totalSections.length
+        let newTotalWidth = width * 2.5
         setTotalWidth(`${newTotalWidth}px`)
       }
     }
@@ -40,7 +38,7 @@ export default function Home() {
       newTranslateX = Math.min(0, newTranslateX)
       newTranslateX = Math.max(
         newTranslateX,
-        -(window.innerWidth * (totalSections.length - 1))
+        -(window.innerWidth * 2.5 - window.innerWidth)
       )
       setTranslateX(newTranslateX)
     }
@@ -94,7 +92,7 @@ export default function Home() {
       window.removeEventListener("resize", resizeMainHeightAndWidth)
     }
   })
-
+  /*
   const moveTo = section => {
     if (isMobile) {
       var sectElement = document.getElementById(section)
@@ -103,7 +101,7 @@ export default function Home() {
       let newTranslateX = -totalSections.indexOf(section) * window.innerWidth
       setTranslateX(newTranslateX)
     }
-  }
+  }*/
 
   const sleep = ms => {
     return new Promise(resolve => setTimeout(resolve, ms))
@@ -128,7 +126,7 @@ export default function Home() {
           id="main"
           className={"section"}
         >
-          <Banner moveTo={moveTo} />
+          <Banner />
           <HomeInfo />
         </div>
         <div

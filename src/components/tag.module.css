@@ -1,0 +1,16 @@
+.container {
+    border-radius: 5px;
+    display: inline-block;
+    font-size: 14px;
+    margin-right: 4px;
+    color: white;
+    font-family: "Roboto Mono", "sans-serif";
+}
+
+.container div {
+    padding-left: 3px;
+    padding-right: 3px;
+    border-radius: 5px;
+    color: black;
+    background-color: rgba(0, 255, 201, 1);
+}

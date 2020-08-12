@@ -3,14 +3,23 @@
     width: 100%;
     position: relative;
     display: flex;
-    justify-content: center;
+    margin-left: 300px;
+    margin-right: 300px;
 }
 
-.intro {}
+.intro {
+    position: absolute;
+    text-align: left;
+}
 
 .header {
     font-size: 80px;
     color: black;
     text-shadow: 5px -2px white;
     font-weight: bold;
+}
+
+.desc {
+    font-size: 1.2rem;
+    width: 800px;
 }
