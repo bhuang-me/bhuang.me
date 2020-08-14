@@ -8,13 +8,7 @@ export default function TimelineInfo() {
       <div className={timelineStyles.intro}>
         <span className={timelineStyles.header}>ABOUT</span>
         <div>
-          <hr
-            style={{
-              borderTop: "5px solid white",
-              width: "70px",
-              float: "left",
-            }}
-          />
+          <hr className={timelineStyles.hr} />
           <br />
         </div>
         <div className={timelineStyles.desc}>

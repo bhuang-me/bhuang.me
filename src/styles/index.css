@@ -21,7 +21,7 @@ body {
 }
 
 #timeline {
-    width: 200vw;
+    width: 250vw;
     height: 100vh;
     background: linear-gradient(180deg,
             rgba(0, 220, 255, 1) 0%,
@@ -93,10 +93,6 @@ img {
     #content {
         display: flex;
         flex-flow: column;
-    }
-
-    #projects {
-        height: calc(100vh + 150px);
     }
 
 }

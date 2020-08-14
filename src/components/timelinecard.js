@@ -11,14 +11,6 @@ import timelineCardStyles from "./timelinecard.module.css"
 import theme from "../theme.js"
 import Tag from "../components/tag.js"
 
-const useStyles = makeStyles({
-  root: {
-    padding: "8px",
-    paddingBottom: "12px",
-    borderTop: "2px solid grey",
-  },
-})
-
 const triangleDown = {
   width: "0px",
   height: "0px",
@@ -43,7 +35,6 @@ const triangleUp = {
 }
 
 export default function TimelineCard(props) {
-  const classes = useStyles()
   var up = props.orientation === "up"
   return (
     <div

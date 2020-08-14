@@ -130,7 +130,10 @@ export default function Home() {
           <HomeInfo />
         </div>
         <div
-          style={{ width: sectionWidth * 1.5, height: sectionHeight }}
+          style={{
+            width: isMobile ? sectionWidth : sectionWidth * 1.5,
+            height: isMobile ? "1500px" : sectionHeight,
+          }}
           id="timeline"
           className={"section"}
         >

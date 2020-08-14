@@ -7,3 +7,14 @@
     top: 50%;
     left: 30px;
 }
+
+@media only screen and (max-width: 800px) {
+    .edge {
+        position: relative;
+        width: 12px;
+        height: 1000px;
+        left: unset;
+        top: 90px;
+
+    }
+}

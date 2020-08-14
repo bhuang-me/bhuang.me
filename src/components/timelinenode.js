@@ -1,6 +1,6 @@
 import React from "react"
 import nodeStyles from "./timelinenode.module.css"
-import { Fade, Typography } from "@material-ui/core"
+import { Fade } from "@material-ui/core"
 
 export default function TimelineNode(props) {
   const [checked, setChecked] = React.useState(false)
@@ -11,7 +11,11 @@ export default function TimelineNode(props) {
 
   return (
     <div style={props.style} className={nodeStyles.nodeContainer}>
-      {props.children && <Fade in={checked}>{props.children}</Fade>}
+      {props.children && (
+        <Fade in={checked}>
+          <div>{props.children}</div>
+        </Fade>
+      )}
       <div className={nodeStyles.nodeOuter}>
         <div
           className={nodeStyles.nodeInner}
