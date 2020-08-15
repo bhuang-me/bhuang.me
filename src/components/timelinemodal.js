@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
 
 export default function TimelineModal(props) {
   const classes = useStyles()
-  const [open, setOpen] = React.useState(true)
+  const [open, setOpen] = React.useState(false)
 
   return (
     <div>

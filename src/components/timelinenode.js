@@ -1,29 +1,35 @@
 import React from "react"
 import nodeStyles from "./timelinenode.module.css"
-import { Fade } from "@material-ui/core"
 
 export default function TimelineNode(props) {
-  const [checked, setChecked] = React.useState(false)
+  const [showLabel, setShowLabel] = React.useState(false)
+  const [showInfo, setShowInfo] = React.useState(false)
 
-  const handleChange = () => {
-    setChecked(prev => !prev)
+  const handleLabel = () => {
+    setShowLabel(prev => !prev)
+  }
+
+  const handleInfo = () => {
+    setShowInfo(prev => !prev)
   }
 
   return (
     <div style={props.style} className={nodeStyles.nodeContainer}>
-      {props.children && (
-        <Fade in={checked}>
-          <div>{props.children}</div>
-        </Fade>
-      )}
-      <div className={nodeStyles.nodeOuter}>
-        <div
-          className={nodeStyles.nodeInner}
-          onMouseEnter={handleChange}
-          onMouseLeave={handleChange}
-        ></div>
+      <div style={{ opacity: showInfo ? "1" : "0" }}>{props.children}</div>
+      <div
+        className={nodeStyles.nodeOuter}
+        onMouseEnter={handleLabel}
+        onMouseLeave={handleLabel}
+        onClick={handleInfo}
+      >
+        <div className={nodeStyles.nodeInner}></div>
       </div>
-      <span className={nodeStyles.nodeLabel}>{props.label}</span>
+      <span
+        style={{ opacity: showLabel ? "1" : "0" }}
+        className={nodeStyles.nodeLabel}
+      >
+        {props.label}
+      </span>
     </div>
   )
 }
