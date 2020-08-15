@@ -33,6 +33,12 @@ const theme = createMuiTheme({
         boxShadow: "none",
       },
     },
+    MuiCardContent: {
+      root: {
+        paddingTop: "8px",
+        paddingBottom: "8px",
+      },
+    },
   },
 })
 
