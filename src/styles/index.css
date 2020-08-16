@@ -3,6 +3,7 @@ body {
 }
 
 #content {
+    display: flex;
     font-family: "Oswald", "Roboto Mono",
         "sans-serif";
     transition: 0.5s ease;

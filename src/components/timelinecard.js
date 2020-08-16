@@ -46,7 +46,6 @@ export default function TimelineCard(props) {
       className={timelineCardStyles.cardContainer}
       style={{
         ...props.style,
-        ...(up ? { bottom: "0px" } : ""),
       }}
     >
       <ThemeProvider theme={theme}>

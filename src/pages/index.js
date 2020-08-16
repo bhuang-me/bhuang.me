@@ -15,19 +15,28 @@ export default function Home() {
   const [translateX, setTranslateX] = useState(0)
   const [sectionWidth, setSectionWidth] = useState(window.innerWidth)
   const [sectionHeight, setSectionHeight] = useState(window.innerHeight)
-  const [totalWidth, setTotalWidth] = useState(`${window.innerWidth * 2.5}px`)
+  const [totalWidth, setTotalWidth] = useState(`${window.innerWidth * 2.3}px`)
+
   // detect if mobile or desktop based on screen width
-  let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
+  let mobi = window.matchMedia("only screen and (max-width: 800px)").matches
+  const [isMobile, setIsMobile] = useState(mobi)
+
   useEffect(() => {
     const resizeMainHeightAndWidth = () => {
+      let mobi = window.matchMedia("only screen and (max-width: 800px)").matches
+      setIsMobile(mobi)
       if (isMobile) {
-        setTotalWidth(window.screen.width)
+        const height = window.screen.height
+        const width = window.screen.width
+        setSectionWidth(`${width}px`)
+        setSectionHeight(`${height}px`)
+        setTotalWidth(width)
       } else {
         const height = window.innerHeight
         const width = window.innerWidth
         setSectionWidth(`${width}px`)
         setSectionHeight(`${height}px`)
-        let newTotalWidth = width * 2.5
+        let newTotalWidth = width * 2.25
         setTotalWidth(`${newTotalWidth}px`)
       }
     }
@@ -38,7 +47,7 @@ export default function Home() {
       newTranslateX = Math.min(0, newTranslateX)
       newTranslateX = Math.max(
         newTranslateX,
-        -(window.innerWidth * 2.5 - window.innerWidth)
+        -(window.innerWidth * 2.25 - window.innerWidth)
       )
       setTranslateX(newTranslateX)
     }
@@ -110,13 +119,15 @@ export default function Home() {
   return (
     <>
       <Helmet
-        meta={[{ charSet: "utf-8" }]}
+        meta={[
+          { charSet: "utf-8", name: "viewport", content: "width=device-width" },
+        ]}
         title="Brandon Huang"
         link={[{ rel: "icon", type: "image/x-icon", href: `${favicon}` }]}
       />
       <div
         style={{
-          transform: `translate(${translateX}px)`,
+          transform: isMobile ? "unset" : `translate(${translateX}px)`,
           width: totalWidth,
         }}
         id="content"
@@ -131,7 +142,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            width: isMobile ? sectionWidth : sectionWidth * 1.5,
+            width: isMobile ? sectionWidth : sectionWidth * 1.25,
             height: isMobile ? "1500px" : sectionHeight,
           }}
           id="timeline"

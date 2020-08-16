@@ -46,6 +46,19 @@ export default function Timeline() {
         />
       </TimelineNode>
       <TimelineNode
+        label="FALL 2018"
+        style={isMobile ? { top: "300px" } : { left: "600px" }}
+      >
+        <NodeInfo
+          title="Viral Curse"
+          projectType="ACADEMIC"
+          desc="A 2D platformer game featuring a unique possession mechanic in a dark fantasy setting. Team project for Intro to Game Development at Concordia University."
+          img={require("./images/broadsignlogo.png")}
+          orientation="up"
+          tags={["C#", "Unity"]}
+        />
+      </TimelineNode>
+      <TimelineNode
         label="WINTER 2018"
         style={isMobile ? { top: "200px" } : { left: "400px" }}
       >
