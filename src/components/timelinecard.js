@@ -34,11 +34,6 @@ const triangleUp = {
   marginBottom: "calc(5rem - 15px)",
 }
 
-const gradientStyle = {
-  background:
-    "background: linear-gradient(180deg, rgba(0, 220, 255, 1) 0%, rgba(0, 255, 201, 1) 100%)",
-}
-
 export default function TimelineCard(props) {
   var up = props.orientation === "up"
   return (

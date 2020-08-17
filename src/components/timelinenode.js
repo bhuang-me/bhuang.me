@@ -34,7 +34,13 @@ export default function TimelineNode(props) {
   return (
     <div ref={ref} style={props.style} className={nodeStyles.nodeContainer}>
       <div
-        style={{ transition: "opacity 0.2s", opacity: showInfo ? "1" : "0" }}
+        style={{
+          transition: "opacity 0.2s, visibility 0.2s",
+          opacity: showInfo ? "1" : "0",
+          visibility: showInfo ? "visible" : "hidden",
+          position: "relative",
+          zIndex: "1",
+        }}
       >
         {props.children}
       </div>

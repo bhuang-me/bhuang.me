@@ -3,13 +3,38 @@ import TimelineCard from "./timelinecard.js"
 import TimelineNode from "./timelinenode.js"
 import TimelineModal from "./timelinemodal.js"
 import timelineStyles from "./timeline.module.css"
+import { useEffect } from "react"
 
-let isMobile = window.matchMedia("only screen and (max-width: 800px)").matches
+export default function Timeline() {
+  let mobi = window.matchMedia("only screen and (max-width: 800px)").matches
+  const [isMobile, setIsMobile] = React.useState(mobi)
+  useEffect(() => {
+    function recomputeMobile() {
+      let m = window.matchMedia("only screen and (max-width: 800px)").matches
+      setIsMobile(m)
+    }
 
-function NodeInfo(props) {
-  if (isMobile) {
+    window.addEventListener("resize", recomputeMobile)
+    return () => {
+      window.removeEventListener("resize", recomputeMobile)
+    }
+  })
+
+  function NodeInfo(props) {
+    if (isMobile) {
+      return (
+        <TimelineModal
+          title={props.title}
+          projectType={props.projectType}
+          desc={props.desc}
+          img={props.img}
+          orientation={props.orientation}
+          tags={props.tags}
+        />
+      )
+    }
     return (
-      <TimelineModal
+      <TimelineCard
         title={props.title}
         projectType={props.projectType}
         desc={props.desc}
@@ -19,19 +44,7 @@ function NodeInfo(props) {
       />
     )
   }
-  return (
-    <TimelineCard
-      title={props.title}
-      projectType={props.projectType}
-      desc={props.desc}
-      img={props.img}
-      orientation={props.orientation}
-      tags={props.tags}
-    />
-  )
-}
 
-export default function Timeline() {
   return (
     <div className={timelineStyles.edge}>
       <TimelineNode

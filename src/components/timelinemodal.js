@@ -11,8 +11,6 @@ import theme from "../theme.js"
 import Tag from "../components/tag.js"
 
 export default function TimelineModal(props) {
-  const [open, setOpen] = React.useState(true)
-
   return (
     <div className={modalStyles.container}>
       <div className={modalStyles.cardContainer}>
