@@ -8,29 +8,11 @@ import timelineStyles from "./timeline.module.css"
 export default function Timeline() {
   const { isMobile } = useContext(GlobalContext)
 
-  const NodeInfo = props => {
+  const NodeInfo = ({ ...props }) => {
     if (isMobile) {
-      return (
-        <TimelineModal
-          title={props.title}
-          projectType={props.projectType}
-          desc={props.desc}
-          img={props.img}
-          orientation={props.orientation}
-          tags={props.tags}
-        />
-      )
+      return <TimelineModal {...props} />
     }
-    return (
-      <TimelineCard
-        title={props.title}
-        projectType={props.projectType}
-        desc={props.desc}
-        img={props.img}
-        orientation={props.orientation}
-        tags={props.tags}
-      />
-    )
+    return <TimelineCard {...props} />
   }
 
   return (
