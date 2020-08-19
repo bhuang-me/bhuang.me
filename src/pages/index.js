@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet"
 import "../styles/index.css"
 import { window, document } from "browser-monads"
 
+export const GlobalContext = React.createContext()
+
 export default function Home() {
   let totalSections = ["main", "about", "projects"]
   // translateX: the translate value in the X axis of the #content element
@@ -36,7 +38,7 @@ export default function Home() {
         const width = window.innerWidth
         setSectionWidth(`${width}px`)
         setSectionHeight(`${height}px`)
-        let newTotalWidth = width * 2.25
+        let newTotalWidth = width * 2.3
         setTotalWidth(`${newTotalWidth}px`)
       }
     }
@@ -47,7 +49,7 @@ export default function Home() {
       newTranslateX = Math.min(0, newTranslateX)
       newTranslateX = Math.max(
         newTranslateX,
-        -(window.innerWidth * 2.25 - window.innerWidth)
+        -(window.innerWidth * 2.3 - window.innerWidth)
       )
       setTranslateX(newTranslateX)
     }
@@ -117,7 +119,7 @@ export default function Home() {
   }
 
   return (
-    <>
+    <GlobalContext.Provider value={{ isMobile, setIsMobile }}>
       <Helmet
         meta={[
           { charSet: "utf-8", name: "viewport", content: "width=device-width" },
@@ -142,7 +144,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            width: isMobile ? sectionWidth : sectionWidth * 1.25,
+            width: isMobile ? sectionWidth : sectionWidth * 1.3,
             height: isMobile ? "1500px" : sectionHeight,
           }}
           id="timeline"
@@ -152,6 +154,6 @@ export default function Home() {
         </div>
       </div>
       <ContactInfo />
-    </>
+    </GlobalContext.Provider>
   )
 }

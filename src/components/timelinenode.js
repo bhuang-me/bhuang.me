@@ -1,9 +1,9 @@
-import React, { useRef, useEffect } from "react"
+import React, { useRef, useEffect, useContext } from "react"
 import nodeStyles from "./timelinenode.module.css"
+import { GlobalContext } from "../pages/index.js"
 
 export default function TimelineNode(props) {
-  const isMobile = window.matchMedia("only screen and (max-width: 800px)")
-    .matches
+  const { isMobile } = useContext(GlobalContext)
   const [showLabel, setShowLabel] = React.useState(false)
   const [showInfo, setShowInfo] = React.useState(false)
 

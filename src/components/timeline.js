@@ -1,26 +1,14 @@
-import React from "react"
+import React, { useContext } from "react"
+import { GlobalContext } from "../pages/index.js"
 import TimelineCard from "./timelinecard.js"
 import TimelineNode from "./timelinenode.js"
 import TimelineModal from "./timelinemodal.js"
 import timelineStyles from "./timeline.module.css"
-import { useEffect } from "react"
 
 export default function Timeline() {
-  let mobi = window.matchMedia("only screen and (max-width: 800px)").matches
-  const [isMobile, setIsMobile] = React.useState(mobi)
-  useEffect(() => {
-    function recomputeMobile() {
-      let m = window.matchMedia("only screen and (max-width: 800px)").matches
-      setIsMobile(m)
-    }
+  const { isMobile } = useContext(GlobalContext)
 
-    window.addEventListener("resize", recomputeMobile)
-    return () => {
-      window.removeEventListener("resize", recomputeMobile)
-    }
-  })
-
-  function NodeInfo(props) {
+  const NodeInfo = props => {
     if (isMobile) {
       return (
         <TimelineModal
@@ -66,7 +54,7 @@ export default function Timeline() {
           title="Viral Curse"
           projectType="ACADEMIC"
           desc="A 2D platformer game featuring a unique possession mechanic in a dark fantasy setting. Team project for Intro to Game Development at Concordia University."
-          img={require("./images/broadsignlogo.png")}
+          img={require("./images/viralcurse.png")}
           orientation="up"
           tags={["C#", "Unity"]}
         />
@@ -100,43 +88,39 @@ export default function Timeline() {
         label="WINTER 2020"
         style={isMobile ? { top: "800px" } : { left: "1600px" }}
       >
-        <div>
-          <NodeInfo
-            title="Don't Eat Sand"
-            projectType="ACADEMIC"
-            desc="A multiplayer real-time strategy (RTS) game developed in team for Advanced Game Development at Concordia University."
-            img={require("./images/des.jpg")}
-            orientation="up"
-            tags={["C#", "Unity"]}
-          />
-          <NodeInfo
-            title="Graduation"
-            projectType="ACADEMIC"
-            desc="Graduated Concordia University with a Bachelor's Degree in Computer Science (BCompSc) with a specialization in Computer Games."
-          />
-        </div>
+        <NodeInfo
+          title="Don't Eat Sand"
+          projectType="ACADEMIC"
+          desc="A multiplayer real-time strategy (RTS) game developed in team for Advanced Game Development at Concordia University."
+          img={require("./images/des.jpg")}
+          orientation="up"
+          tags={["C#", "Unity"]}
+        />
+        <NodeInfo
+          title="Graduation"
+          projectType="ACADEMIC"
+          desc="Graduated Concordia University with a Bachelor's Degree in Computer Science (BCompSc) with a specialization in Computer Games."
+        />
       </TimelineNode>
       <TimelineNode
         label="SUMMER 2020"
         style={isMobile ? { top: "900px" } : { left: "1800px" }}
       >
-        <div>
-          <NodeInfo
-            title="Portfolio Website"
-            projectType="PERSONAL"
-            desc="Personal portfolio website made in Gatsby and hosted on GitHub Pages."
-            img={require("./images/logo_gradient_card.png")}
-            tags={["HTML", "CSS", "ReactJS", "Gatsby"]}
-            orientation="up"
-          />
-          <NodeInfo
-            title="Chat Filter Discord Bot"
-            projectType="PERSONAL"
-            desc="Discord bot that filters words from the chat channel based off a database"
-            img={require("./images/discord.jpg")}
-            tags={["NodeJS", "MongoDB"]}
-          />
-        </div>
+        <NodeInfo
+          title="Portfolio Website"
+          projectType="PERSONAL"
+          desc="Personal portfolio website made in Gatsby and hosted on GitHub Pages."
+          img={require("./images/logo_gradient_card.png")}
+          tags={["HTML", "CSS", "ReactJS", "Gatsby"]}
+          orientation="up"
+        />
+        <NodeInfo
+          title="Chat Filter Discord Bot"
+          projectType="PERSONAL"
+          desc="Discord bot that filters words from the chat channel based off a database"
+          img={require("./images/discord.jpg")}
+          tags={["NodeJS", "MongoDB"]}
+        />
       </TimelineNode>
       <TimelineNode
         label="NOW"
