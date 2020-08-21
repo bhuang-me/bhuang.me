@@ -15,6 +15,7 @@
 
 .homeMainAnim {
   width: 20%;
+  user-select: none;
 }
 
 .scrollPointer {

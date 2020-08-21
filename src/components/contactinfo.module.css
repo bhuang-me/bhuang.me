@@ -49,17 +49,24 @@
 @media only screen and (max-width: 800px) {
   .containerBlack {
     bottom: -3.5rem;
-    left: 0px;
-    border-radius: 0px;
     font-size: 0.75rem;
-    width: 100%;
     flex-flow: column;
     align-items: center;
+    border-radius: unset;
     transition: bottom 0.1s ease;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    width: 100%;
+    left: unset;
   }
 
-  .containerBlack:active {
+  .containerBlack:hover {
     bottom: 0px;
+    padding: 0px;
+    padding-top: 10px;
+    padding-bottom: 12px;
+    /* Have to redeclare width due to desktop width overwriting otherwise */
     width: 100%;
   }
 

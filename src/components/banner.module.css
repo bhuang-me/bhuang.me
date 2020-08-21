@@ -9,6 +9,7 @@
     left: 30px;
     z-index: 1000;
     height: 80px;
+    user-select: none;
 }
 
 

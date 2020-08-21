@@ -13,6 +13,7 @@ body {
     height: 100vh;
     width: 100vw;
     background-color: white;
+    z-index: 0;
 }
 
 #about {
@@ -38,7 +39,6 @@ body {
 .section {
     float: left;
     text-align: center;
-    display: table;
     position: relative;
     overflow: hidden;
 }

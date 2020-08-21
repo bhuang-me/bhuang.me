@@ -71,6 +71,11 @@ export default function Timeline() {
         style={isMobile ? { top: "800px" } : { left: "1600px" }}
       >
         <NodeInfo
+          title="Graduation"
+          projectType="ACADEMIC"
+          desc="Graduated Concordia University with a Bachelor's Degree in Computer Science (BCompSc) with a specialization in Computer Games."
+        />
+        <NodeInfo
           title="Don't Eat Sand"
           projectType="ACADEMIC"
           desc="A multiplayer real-time strategy (RTS) game developed in team for Advanced Game Development at Concordia University."
@@ -78,16 +83,18 @@ export default function Timeline() {
           orientation="up"
           tags={["C#", "Unity"]}
         />
-        <NodeInfo
-          title="Graduation"
-          projectType="ACADEMIC"
-          desc="Graduated Concordia University with a Bachelor's Degree in Computer Science (BCompSc) with a specialization in Computer Games."
-        />
       </TimelineNode>
       <TimelineNode
         label="SUMMER 2020"
         style={isMobile ? { top: "900px" } : { left: "1800px" }}
       >
+        <NodeInfo
+          title="Chat Filter Discord Bot"
+          projectType="PERSONAL"
+          desc="Discord bot that filters words from the chat channel based off a database"
+          img={require("./images/discord.jpg")}
+          tags={["NodeJS", "MongoDB"]}
+        />
         <NodeInfo
           title="Portfolio Website"
           projectType="PERSONAL"
@@ -95,13 +102,6 @@ export default function Timeline() {
           img={require("./images/logo_gradient_card.png")}
           tags={["HTML", "CSS", "ReactJS", "Gatsby"]}
           orientation="up"
-        />
-        <NodeInfo
-          title="Chat Filter Discord Bot"
-          projectType="PERSONAL"
-          desc="Discord bot that filters words from the chat channel based off a database"
-          img={require("./images/discord.jpg")}
-          tags={["NodeJS", "MongoDB"]}
         />
       </TimelineNode>
       <TimelineNode
