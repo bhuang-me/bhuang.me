@@ -4,11 +4,8 @@ const theme = createMuiTheme({
   typography: {
     fontFamily: "Oswald, Roboto",
     h4: {
-      fontSize: 24,
+      fontSize: "min(24px, 3vh)",
       fontWeight: "bold",
-    },
-    h5: {
-      fontSize: 16,
     },
     h6: {
       fontSize: 14,
@@ -19,7 +16,7 @@ const theme = createMuiTheme({
       fontSize: 16,
     },
     subtitle2: {
-      fontSize: 16,
+      fontSize: "min(16px, 2vh)",
       fontWeight: "bold",
     },
     body1: {

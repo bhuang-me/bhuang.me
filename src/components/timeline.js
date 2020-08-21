@@ -22,8 +22,8 @@ export default function Timeline() {
         style={isMobile ? { top: "0px" } : { left: "0px" }}
       >
         <NodeInfo
-          title="IT Intern - Michael Kors"
-          projectType="INTERNSHIP"
+          title="IT Intern"
+          projectType="INTERNSHIP - MICHAEL KORS"
           desc="Assisted stores and corporate offices in Canada with technical problems, device staging, delivery and repair."
           img={require("./images/mklogo.png")}
         />
@@ -46,8 +46,8 @@ export default function Timeline() {
         style={isMobile ? { top: "200px" } : { left: "400px" }}
       >
         <NodeInfo
-          title="Marketing Intern - Broadsign"
-          projectType="INTERNSHIP"
+          title="Marketing Intern"
+          projectType="INTERNSHIP - BROADSIGN"
           desc="As part of the marketing team, developed webpages and features for the company website following design guidelines."
           img={require("./images/broadsignlogo.png")}
           orientation="up"
@@ -59,8 +59,8 @@ export default function Timeline() {
         style={isMobile ? { top: "500px" } : { left: "1000px" }}
       >
         <NodeInfo
-          title="Software Intern - Accedian Networks"
-          projectType="INTERNSHIP"
+          title="Software Intern"
+          projectType="INTERNSHIP - ACCEDIAN NETWORKS"
           desc="Consolidated internal services into a central web portal for easier access and provided a redesign for the VCX product."
           img={require("./images/accedianlogo.png")}
           tags={["HTML", "CSS", "C", "JQuery", "PHP", "Linux"]}
@@ -91,7 +91,7 @@ export default function Timeline() {
         <NodeInfo
           title="Chat Filter Discord Bot"
           projectType="PERSONAL"
-          desc="Discord bot that filters words from the chat channel based off a database"
+          desc="Discord bot that filters words from the chat channel based off a database."
           img={require("./images/discord.jpg")}
           tags={["NodeJS", "MongoDB"]}
         />

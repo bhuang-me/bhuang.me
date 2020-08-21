@@ -15,27 +15,28 @@ export default function Home() {
   // let totalSections = ["main", "about", "projects"]
   // translateX: the translate value in the X axis of the #content element
   const [translateX, setTranslateX] = useState(0)
-  const [sectionWidth, setSectionWidth] = useState(0)
-  const [sectionHeight, setSectionHeight] = useState(0)
+  const [mainWidth, setMainWidth] = useState(0)
+  const [mainHeight, setMainHeight] = useState(0)
   const [totalWidth, setTotalWidth] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
+  const timelineWidth = 2600
 
   useEffect(() => {
     const resizeMainHeightAndWidth = () => {
       let mobi = window.matchMedia("only screen and (max-width: 800px)").matches
       setIsMobile(mobi)
       if (isMobile) {
-        const width = window.screen.width
-        const height = window.screen.height
-        setSectionWidth(width)
-        setSectionHeight(height)
-        setTotalWidth(width)
+        const mainWidth = window.screen.width
+        const mainHeight = window.screen.height
+        setMainWidth(mainWidth)
+        setMainHeight(mainHeight)
+        setTotalWidth(mainWidth)
       } else {
-        const width = window.innerWidth
-        const height = window.innerHeight
-        setSectionWidth(width)
-        setSectionHeight(height)
-        setTotalWidth(width * 2.35)
+        const mainWidth = window.innerWidth
+        const mainHeight = window.innerHeight
+        setMainWidth(mainWidth)
+        setMainHeight(mainHeight)
+        setTotalWidth(mainWidth + timelineWidth)
       }
     }
     resizeMainHeightAndWidth()
@@ -58,77 +59,17 @@ export default function Home() {
       }
       let newTranslateX = translateX + scrollAmount
       newTranslateX = Math.min(0, newTranslateX)
-      newTranslateX = Math.max(
-        newTranslateX,
-        -(window.innerWidth * 2.35 - window.innerWidth)
-      )
+      newTranslateX = Math.max(newTranslateX, -timelineWidth)
       setTranslateX(newTranslateX)
     }
 
-    /*anim()
-    async function anim() {
-      // translateX is negative
-      var nextSectionIndex = Math.floor(-translateX / (window.innerWidth * 0.7))
-      var nextBreakpoint = nextSectionIndex * window.innerWidth
-      if (translateX <= nextBreakpoint) {
-        let items = document.getElementsByClassName(
-          `beforeAnimate_${totalSections[nextSectionIndex]}`
-        )
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-    }
-
-    async function animMobile() {
-      var nextSectionIndex = Math.floor(
-        window.scrollY / (window.innerHeight * 0.7)
-      )
-      var nextBreakpoint = nextSectionIndex * window.innerHeight * 0.7
-      if (window.scrollY >= nextBreakpoint) {
-        let items = document.getElementsByClassName(
-          `beforeAnimate_${totalSections[nextSectionIndex]}`
-        )
-        for (let i = 0; i < items.length; i++) {
-          items[i].classList.add("animate")
-          await sleep(200)
-        }
-      }
-    }*/
-
-    /*if (isMobile) {
-      window.addEventListener("scroll", animMobile)
-    } else {
-      window.addEventListener("wheel", anim)
-    }*/
     window.addEventListener("wheel", handleWheel)
     window.addEventListener("resize", resizeMainHeightAndWidth)
     return () => {
-      /*if (isMobile) {
-        window.removeEventListener("scroll", animMobile)
-      } else {
-        window.removeEventListener("wheel", anim)
-      }*/
       window.removeEventListener("wheel", handleWheel)
       window.removeEventListener("resize", resizeMainHeightAndWidth)
     }
   })
-  /*
-  const moveTo = section => {
-    if (isMobile) {
-      var sectElement = document.getElementById(section)
-      sectElement.scrollIntoView({ behavior: "smooth" })
-    } else {
-      let newTranslateX = -totalSections.indexOf(section) * window.innerWidth
-      setTranslateX(newTranslateX)
-    }
-  }*/
-  /*
-  const sleep = ms => {
-    return new Promise(resolve => setTimeout(resolve, ms))
-  }
-*/
   return (
     <GlobalContext.Provider value={{ isMobile, setIsMobile }}>
       <Helmet
@@ -146,7 +87,7 @@ export default function Home() {
         id="content"
       >
         <div
-          style={{ width: `${sectionWidth}px`, height: `${sectionHeight}px` }}
+          style={{ width: `${mainWidth}px`, height: `${mainHeight}px` }}
           id="main"
           className={"section"}
         >
@@ -155,8 +96,8 @@ export default function Home() {
         </div>
         <div
           style={{
-            width: isMobile ? `${sectionWidth}px` : `${sectionWidth * 1.35}px`,
-            height: isMobile ? "1500px" : `${sectionHeight}px`,
+            width: isMobile ? `${mainWidth}px` : `2600px`,
+            height: isMobile ? "1500px" : `${mainHeight}px`,
           }}
           id="timeline"
           className={"section"}

@@ -14,17 +14,17 @@
 
 .cardUp {
     bottom: 0px;
-    margin-bottom: 5rem;
+    margin-bottom: 4rem;
 }
 
 .cardDown {
-    margin-top: 5rem;
+    margin-top: 4rem;
 }
 
 .media {
     width: auto;
-    height: 120px;
-    max-height: 160px;
+    height: 8vh;
+    max-height: 120px;
 }
 
 .tagContainer {
