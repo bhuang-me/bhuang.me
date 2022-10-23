@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react"
+import { Helmet } from "react-helmet"
+import { window } from "browser-monads"
+
 import Banner from "../components/banner"
 import HomeInfo from "../components/homeinfo"
-//import AboutInfo from "../components/aboutinfo"
-import TimelineInfo from "../components/timelineinfo"
+import TimelineInfo from "../components/timeline/timelineinfo"
 import ContactInfo from "../components/contactinfo"
 import favicon from "../components/images/favicon.ico"
-import { Helmet } from "react-helmet"
 import "../styles/index.css"
-import { window } from "browser-monads"
 
 export const GlobalContext = React.createContext()
 
@@ -19,7 +19,7 @@ export default function Home() {
   const [mainHeight, setMainHeight] = useState(0)
   const [totalWidth, setTotalWidth] = useState(0)
   const [isMobile, setIsMobile] = useState(false)
-  const timelineWidth = 2600
+  const timelineWidth = 1600
 
   useEffect(() => {
     const resizeMainHeightAndWidth = () => {
@@ -96,7 +96,7 @@ export default function Home() {
         </div>
         <div
           style={{
-            width: isMobile ? `${mainWidth}px` : `2600px`,
+            width: isMobile ? `${mainWidth}px` : `${timelineWidth}px`,
             height: isMobile ? "1500px" : `${mainHeight}px`,
           }}
           id="timeline"

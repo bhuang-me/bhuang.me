@@ -1,41 +1,18 @@
-import React from "react"
+import React from 'react'
 import {
   Card,
   CardContent,
   CardMedia,
   ThemeProvider,
   Typography,
-} from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
-import timelineCardStyles from "./timelinecard.module.css"
-import theme from "../theme.js"
-import Tag from "../components/tag.js"
-
-const triangleDown = {
-  width: "0px",
-  height: "0px",
-  position: "absolute",
-  borderLeft: "15px solid transparent",
-  borderRight: "15px solid transparent",
-  borderBottom: "15px solid white",
-  transform: "translate(-50%, -100%)",
-  marginTop: "5rem",
-}
-
-const triangleUp = {
-  width: "0px",
-  height: "0px",
-  position: "absolute",
-  bottom: "0px",
-  borderLeft: "15px solid transparent",
-  borderRight: "15px solid transparent",
-  borderTop: "15px solid white",
-  transform: "translate(-50%)",
-  marginBottom: "calc(5rem - 15px)",
-}
+} from '@material-ui/core'
+// import { makeStyles } from "@material-ui/core/styles"
+import * as timelineCardStyles from './timelinecard.module.css'
+import theme from '../../theme'
+import Tag from '../tag'
 
 export default function TimelineCard(props) {
-  var up = props.orientation === "up"
+  var up = props.orientation === 'up'
   return (
     <div
       className={timelineCardStyles.cardContainer}

@@ -1,14 +1,14 @@
-import React from "react"
+import React from 'react'
 import {
   Card,
   CardContent,
   CardMedia,
   ThemeProvider,
   Typography,
-} from "@material-ui/core"
-import modalStyles from "./timelinemodal.module.css"
-import theme from "../theme.js"
-import Tag from "../components/tag.js"
+} from '@material-ui/core'
+import * as modalStyles from './timelinemodal.module.css'
+import theme from '../../theme'
+import Tag from '../tag'
 
 export default function TimelineModal(props) {
   return (

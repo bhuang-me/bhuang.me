@@ -1,6 +1,6 @@
-import React from "react"
-import menuStyles from "./menu.module.css"
-import hamburger from "./images/hamburger_menu.svg"
+import React from 'react'
+import * as menuStyles from './menu.module.css'
+import hamburger from './images/hamburger_menu.svg'
 
 export default function Menu(props) {
   return (
@@ -12,7 +12,7 @@ export default function Menu(props) {
         <div className={menuStyles.linkBg}>
           <span
             className={menuStyles.aboutLink}
-            onClick={() => props.moveTo("about")}
+            onClick={() => props.moveTo('about')}
           ></span>
         </div>
       </div>
@@ -20,7 +20,7 @@ export default function Menu(props) {
         <div className={menuStyles.linkBg}>
           <span
             className={menuStyles.projectsLink}
-            onClick={() => props.moveTo("projects")}
+            onClick={() => props.moveTo('projects')}
           ></span>
         </div>
       </div>

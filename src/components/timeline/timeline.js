@@ -1,23 +1,25 @@
-import React, { useContext } from "react"
-import { GlobalContext } from "../pages/index.js"
-import TimelineCard from "./timelinecard.js"
-import TimelineNode from "./timelinenode.js"
-import TimelineModal from "./timelinemodal.js"
-import timelineStyles from "./timeline.module.css"
+import React /*, { useContext } */ from 'react'
+// import { GlobalContext } from '../../pages/index.js'
+// import TimelineCard from './timelinecard.js'
+import TimelineEdge from './timelineEdge.js'
+// import TimelineModal from './timelinemodal.js'
 
 export default function Timeline() {
-  const { isMobile } = useContext(GlobalContext)
+    // const { isMobile } = useContext(GlobalContext)
 
-  const NodeInfo = ({ ...props }) => {
-    if (isMobile) {
-      return <TimelineModal {...props} />
-    }
-    return <TimelineCard {...props} />
-  }
+    // const NodeInfo = ({ ...props }) => {
+    //     if (isMobile) {
+    //         return <TimelineModal {...props} />
+    //     }
+    //     return <TimelineCard {...props} />
+    // }
 
-  return (
-    <div className={timelineStyles.edge}>
-      <TimelineNode
+    return (
+        <>
+            <TimelineEdge />
+            <TimelineEdge />
+            <TimelineEdge />
+            {/* <TimelineNode
         label="SUMMER 2017"
         style={isMobile ? { top: "0px" } : { left: "0px" }}
       >
@@ -109,7 +111,7 @@ export default function Timeline() {
         style={isMobile ? { top: "1000px" } : { left: "2000px" }}
       >
         <NodeInfo title="To be continued..." />
-      </TimelineNode>
-    </div>
-  )
+      </TimelineNode> */}
+        </>
+    )
 }

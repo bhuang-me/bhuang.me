@@ -1,6 +1,6 @@
-import React from "react"
-import logoStyles from "./logo.module.css"
-import logo from "./images/logo_gradient.png"
+import React from 'react'
+import * as logoStyles from './logo.module.css'
+import logo from './images/logo_gradient.png'
 
 export default function Logo() {
   return (

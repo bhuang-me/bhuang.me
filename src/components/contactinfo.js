@@ -1,5 +1,5 @@
-import React from "react"
-import contactInfoStyles from "./contactinfo.module.css"
+import React from 'react'
+import * as contactInfoStyles from './contactinfo.module.css'
 
 export default function ContactInfo() {
   return (
@@ -8,14 +8,20 @@ export default function ContactInfo() {
       <div className={contactInfoStyles.email}>
         brandon<span>bgda</span>@<span>hot</span>mail.<span>com</span>
       </div>
-      <div className={contactInfoStyles.social}>
-        <img
-          src={require("./images/linkedin_logo.png")}
-          alt="LinkedInLogo"
-          onClick={() =>
-            (window.location.href = "https://linkedin.com/in/b-huang")
+      <div
+        className={contactInfoStyles.social}
+        role="button"
+        onKeyDown={e => {
+          if (e.key === 'Enter') {
+            window.location.href = 'https://linkedin.com/in/b-huang'
           }
-        />
+        }}
+        onClick={() =>
+          (window.location.href = 'https://linkedin.com/in/b-huang')
+        }
+        tabIndex={0}
+      >
+        <img src={require('./images/linkedin_logo.png')} alt="LinkedInLogo" />
       </div>
     </div>
   )

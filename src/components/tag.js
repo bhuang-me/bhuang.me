@@ -1,5 +1,5 @@
-import React from "react"
-import tagStyles from "./tag.module.css"
+import React from 'react'
+import * as tagStyles from './tag.module.css'
 
 export default function Tag(props) {
   return (
