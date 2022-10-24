@@ -1,5 +1,6 @@
 import React from 'react'
 import * as contactInfoStyles from './contactinfo.module.css'
+import linkedInLogo from './images/linkedin_logo.png'
 
 export default function ContactInfo() {
   return (
@@ -21,7 +22,7 @@ export default function ContactInfo() {
         }
         tabIndex={0}
       >
-        <img src={require('./images/linkedin_logo.png')} alt="LinkedInLogo" />
+        <img src={linkedInLogo} alt="LinkedInLogo" />
       </div>
     </div>
   )
